@@ -1,5 +1,16 @@
 {{define "body"}}
-    {{.Website}}
-    {{.Email}}
-    Id {{.Id}}
+    <p>{{.Website}}</p>
+    <p>{{.Email}}</p>
+    <p>Id {{.Id}}</p>
+
+    <p>the username is {{$.AA.Name}}<p>
+    <p>the age is {{.AA.Age}}</p>
+
+    {{.s}}
+
+    {{range $key, $val := .s}}
+        <p>{{$key}} == {{$val}}</p>
+    {{end}}
+
+
 {{end}}

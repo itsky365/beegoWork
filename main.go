@@ -1,38 +1,54 @@
 package main
 
 import (
-    //"fmt"
-    _ "beegoWork/routers"
-    "github.com/astaxie/beego/orm"
-    _ "github.com/lib/pq"
-    "github.com/astaxie/beego/logs"
-    "github.com/astaxie/beego"
-    //"beegoWork/models"
+	_ "beegoWork/routers"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
+	_ "github.com/lib/pq"
+	"github.com/astaxie/beego/logs"
 )
 
-// Model Struct
-
-
-func init() {
-    // set default database
+// 注册ORM
+func ormRegister() {
+    // 设置默认DB
     err := orm.RegisterDataBase("default", "postgres", "postgres://postgres:postgres@127.0.0.1:5432/canadaoffer?sslmode=disable")
     if err != nil {
-        logs.Debug("RegisterDataBase error ", err)
+        logs.Debug("RegisterDataBase Error=>", err)
     }
-
-    // register model
-    //orm.RegisterModel(new(models.User))
-
     orm.Debug = true
+}
 
-    // create table
-    orm.RunSyncdb("default", false, true)
+// 自动建表
+func createTable() {
+    name := "default"  // 数据库别名
+    force := false  // 不强制建数据库
+    verbose := true  // 打印建表过程
+    err := orm.RunSyncdb(name, force, verbose)  // 建表
+    if err != nil {
+        beego.Error(err)
+    }
+}
+
+// 日志配置
+func logsConfig() {
+    //logs := logs.NewLogger(10000)
+    logs.SetLogger("console")
+    logs.SetLogger("file", `{"filename":"debug.log"}`)
+    logs.EnableFuncCallDepth(true)  // 调用的文件名和文件行号
+    logs.Async()  // 设置异步输出
+}
+
+func init() {
+    // 注册orm
+    ormRegister()
+
+    // 自动建表
+    createTable()
+
+    // 日志配置
+    logsConfig()
 }
 
 func main() {
-    // delete
-    //num, err = o.Delete(&u)
-    //fmt.Printf("NUM: %d, ERR: %v\n", num, err)
-
-    beego.Run()
+	beego.Run()
 }

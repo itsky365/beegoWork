@@ -1,16 +1,20 @@
 package controllers
 
 import (
+	"beegoWork/models"
+	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
-	//"github.com/astaxie/beego/orm"
-	//"beegoWork/models"
-	"beegoWork/models"
 	"github.com/astaxie/beego/orm"
 )
 
 type BlogIndexController struct {
 	beego.Controller
+}
+
+type A struct {
+	Name string
+	Age  int
 }
 
 func (c *BlogIndexController) Get() {
@@ -28,6 +32,7 @@ func (c *BlogIndexController) Get() {
 
 	// insert
 	user_id, err := o.Insert(&user)
+	fmt.Println(user_id)
 	logs.Debug("ID: %d, ERR: %v\n", user_id, err)
 
 	// update
@@ -50,6 +55,25 @@ func (c *BlogIndexController) Get() {
 	//}
 	//logs.Debug(err)
 
+	//books := []models.Book{
+	//	{Name: "lkn1", Price: 10},
+	//	{Name: "lkn5", Price: 122},
+	//	{Name: "lkn3", Price: 3},
+	//	{Name: "lkn22", Price: 12},
+	//	{Name: "lkn2121", Price: 133},
+	//}
+	//插入，第一个参数为要插入的条数
+	//booksId, err := o.InsertMulti(5, books)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//fmt.Println(booksId)
+
+	c.Data["AA"] = &A{Name: "astaxie", Age: 25}
+
+	ss :=[]string{"a","b","c"}
+	c.Data["s"]=ss
+
 	c.Data["Id"] = id
 	c.Data["Website"] = "beego.me"
 	c.Data["Email"] = "astaxie@gmail.com"
@@ -62,6 +86,22 @@ type BlogJsonController struct {
 }
 
 func (c *BlogJsonController) Get() {
+	o := orm.NewOrm()
+
+	var book1 *models.Book = &models.Book{Name: "蓝色fasfsaf天空", Price: 30.0, Author: "刘凯宁"}
+	//间接构造对象
+	var book2 *models.Book = new(models.Book)
+	book2.Author = "mq"
+	book2.Name = "mq111fasf"
+	book2.Price = 100.0
+	//执行插入，o.Insert()返回的是受影响的id
+	id1, _ := o.Insert(book1)
+	id2, _ := o.Insert(book2)
+	logs.Debug(id1)
+	logs.Debug(id2)
+	//logs.Debug("blogjson=>", o.Insert(book1))
+	//logs.Debug("blogjson=>", o.Insert(book2))
+
 	c.Data["json"] = map[string]string{
 		"name": "爱wifi",
 		"work": "chinanet",
