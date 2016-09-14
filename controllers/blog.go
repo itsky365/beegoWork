@@ -77,8 +77,10 @@ func (c *BlogIndexController) Get() {
 	c.Data["Id"] = id
 	c.Data["Website"] = "beego.me"
 	c.Data["Email"] = "astaxie@gmail.com"
-	c.Layout = "layout.tpl"
-	c.TplName = "blogIndex.tpl"
+	c.Data["html"] = "<div style='color:#f00'>你好html</div>"
+
+	c.Layout = "layout.html"
+	c.TplName = "blogIndex.html"
 }
 
 type BlogJsonController struct {

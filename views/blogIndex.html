@@ -12,5 +12,9 @@
         <p>{{$key}} == {{$val}}</p>
     {{end}}
 
+    <div>{{str2html .html}}</div>
+
+    <div>{{.html | htmlquote}}</div>
+
 
 {{end}}

@@ -2,21 +2,23 @@ package models
 
 import (
 	"github.com/astaxie/beego/orm"
+	"time"
 )
 
 type User struct {
-	Id   int    `orm:"pk;auto"`
-	Name string `orm:"size(100)"`
+	Id      int    `orm:"pk;auto"`
+	Name    string `orm:"size(100)"`
+	Created time.Time
 	//Profile *Profile `orm:"rel(one)"`      // OneToOne relation
 	//Post    []*Post  `orm:"reverse(many)"` // 设置一对多的反向关系
 }
 
 //定义结构体，名字为表名大写，字段大写，为表的字段
 type Book struct {
-    Name   string
-    Num    int64 `orm:"pk;auto"` //主键，自动增长
-    Author string
-    Price  float32
+	Name   string
+	Num    int64 `orm:"pk;auto"` //主键，自动增长
+	Author string
+	Price  float32
 }
 
 //type Profile struct {
