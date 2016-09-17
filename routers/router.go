@@ -9,4 +9,8 @@ func init() {
     beego.Router("/", &controllers.MainController{})
     beego.Router("/blog/:id:int", &controllers.BlogIndexController{})
     beego.Router("/blog/json", &controllers.BlogJsonController{})
+    beego.Router("/blog/add", &controllers.BlogAddController{})
+    beego.Router("/login", &controllers.LoginController{})
+    beego.Router("/login/post", &controllers.LoginPostController{})
+    beego.Router("/auth/index", &controllers.AuthIndexController{})
 }

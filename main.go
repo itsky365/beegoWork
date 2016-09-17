@@ -6,7 +6,10 @@ import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/lib/pq"
 	"github.com/astaxie/beego/logs"
+    //"github.com/astaxie/beego/session"
 )
+
+//var globalSessions *session.Manager
 
 // 注册ORM
 func ormRegister() {
@@ -38,6 +41,13 @@ func logsConfig() {
     logs.Async()  // 设置异步输出
 }
 
+// session
+//func sessionInit()  {
+//    globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
+//    go globalSessions.GC()
+//}
+
+
 func init() {
     // 注册orm
     ormRegister()
@@ -47,6 +57,8 @@ func init() {
 
     // 日志配置
     logsConfig()
+    
+    //sessionInit()
 }
 
 func main() {

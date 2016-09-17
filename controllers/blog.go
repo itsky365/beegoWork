@@ -2,10 +2,11 @@ package controllers
 
 import (
 	"beegoWork/models"
-	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
+	"time"
+	"fmt"
 )
 
 type BlogIndexController struct {
@@ -28,11 +29,11 @@ func (c *BlogIndexController) Get() {
 
 	o := orm.NewOrm()
 
-	user := models.User{Name: "slene22"}
+	user := models.User{Name: "slene22", Created: time.Now()}
 
 	// insert
 	user_id, err := o.Insert(&user)
-	fmt.Println(user_id)
+	logs.Debug(user_id)
 	logs.Debug("ID: %d, ERR: %v\n", user_id, err)
 
 	// update
@@ -109,4 +110,34 @@ func (c *BlogJsonController) Get() {
 		"work": "chinanet",
 	}
 	c.ServeJSON()
+}
+
+
+type BlogAddController struct {
+	beego.Controller
+}
+
+func (c *BlogAddController) Get() {
+	o := orm.NewOrm()
+	
+	user := models.User{Id: 9}
+	
+	err := o.Read(&user)
+	
+	if err == orm.ErrNoRows {
+		fmt.Println("查询不到")
+	} else if err == orm.ErrMissPK {
+		fmt.Println("找不到主键")
+	} else {
+		fmt.Println(user.Id, user.Name)
+	}
+	
+	
+	c.Data["aa"] = "aaa"
+	
+	
+	//c.Data["User"] = o.Read(&user)
+	
+	//c.Layout = "layout.html"
+	c.TplName = "blogAdd.html"
 }

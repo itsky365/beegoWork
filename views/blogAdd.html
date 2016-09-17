@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{{.aa}}
+
+<div>
+    {{.User.name}}
+</div>
+
+{{range $key, $val := .User}}
+<p>{{$key}} / {{$val}}</p>
+{{end}}
+
+<div>这样不好吧</div>
+
+</body>
+</html>
