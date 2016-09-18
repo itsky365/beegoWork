@@ -11,6 +11,6 @@ func init() {
     beego.Router("/blog/json", &controllers.BlogJsonController{})
     beego.Router("/blog/add", &controllers.BlogAddController{})
     beego.Router("/login", &controllers.LoginController{})
-    beego.Router("/login/post", &controllers.LoginPostController{})
+    beego.Router("/logout", &controllers.LogoutController{})
     beego.Router("/auth/index", &controllers.AuthIndexController{})
 }

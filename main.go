@@ -6,7 +6,8 @@ import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/lib/pq"
 	"github.com/astaxie/beego/logs"
-    //"github.com/astaxie/beego/session"
+    _ "github.com/astaxie/beego/session/redis"
+    "beegoWork/filter"
 )
 
 //var globalSessions *session.Manager
@@ -14,7 +15,7 @@ import (
 // 注册ORM
 func ormRegister() {
     // 设置默认DB
-    err := orm.RegisterDataBase("default", "postgres", "postgres://postgres:postgres@127.0.0.1:5432/canadaoffer?sslmode=disable")
+    err := orm.RegisterDataBase("default", "postgres", "postgres://postgres:postgres@127.0.0.1:5432/beegodb?sslmode=disable")
     if err != nil {
         logs.Debug("RegisterDataBase Error=>", err)
     }
@@ -41,11 +42,13 @@ func logsConfig() {
     logs.Async()  // 设置异步输出
 }
 
-// session
-//func sessionInit()  {
-//    globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
-//    go globalSessions.GC()
-//}
+// Session配置
+func sessionInit()  {
+    //globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
+    //go globalSessions.GC()
+    beego.BConfig.WebConfig.Session.SessionProvider = "redis"
+    beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
+}
 
 
 func init() {
@@ -57,10 +60,15 @@ func init() {
 
     // 日志配置
     logsConfig()
-    
-    //sessionInit()
+
+    // Session配置
+    sessionInit()
 }
 
 func main() {
+    // 是否登录过渡器
+    beego.InsertFilter("/*", beego.BeforeRouter, filter.FilterUser)
+
+    // 运行程序
 	beego.Run()
 }
