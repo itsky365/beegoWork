@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑用户</title>
+</head>
+<body>
+<form action="/user/edit/{{.user.Id}}" method="post">
+    <input type="text" value="{{.user.Id}}" disabled>
+    <input type="text" value="{{.user.Created}}" disabled>
+    <input type="text" name="name" id="name" value="{{.user.Name}}" placeholder="输入用户名">
+    <input type="submit" value="编辑">
+</form>
+</body>
+</html>

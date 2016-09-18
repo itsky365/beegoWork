@@ -47,7 +47,8 @@ func sessionInit()  {
     //globalSessions, _ = session.NewManager("memory", `{"cookieName":"gosessionid", "enableSetCookie,omitempty": true, "gclifetime":3600, "maxLifetime": 3600, "secure": false, "sessionIDHashFunc": "sha1", "sessionIDHashKey": "", "cookieLifeTime": 3600, "providerConfig": ""}`)
     //go globalSessions.GC()
     beego.BConfig.WebConfig.Session.SessionProvider = "redis"
-    beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
+    // 链接地址，连接池，访问密码(没有保持为空)
+    beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379,0,Zhuwenzhuo0901"
 }
 
 
@@ -69,6 +70,6 @@ func main() {
     // 是否登录过渡器
     beego.InsertFilter("/*", beego.BeforeRouter, filter.FilterUser)
 
-    // 运行程序
-	beego.Run()
+    // 运行程序2
+    beego.Run()
 }

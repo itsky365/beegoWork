@@ -8,7 +8,7 @@ import (
 type User struct {
 	Id      int    `orm:"pk;auto"`
 	Name    string `orm:"size(100)"`
-	Created time.Time
+	Created time.Time `orm:"auto_now_add;type(datetime)"`
 	//Profile *Profile `orm:"rel(one)"`      // OneToOne relation
 	//Post    []*Post  `orm:"reverse(many)"` // 设置一对多的反向关系
 }

@@ -3,6 +3,9 @@ package controllers
 import (
     "github.com/astaxie/beego"
     "github.com/astaxie/beego/logs"
+    "github.com/astaxie/beego/orm"
+    "beegoWork/models"
+    "fmt"
 )
 
 // 用户登录
@@ -38,7 +41,6 @@ type AuthIndexController struct {
 
 func (c *AuthIndexController) Get() {
     sess := c.StartSession()
-    //defer sess.SessionRelease()
     
     username := sess.Get("username")
     userid := sess.Get("userid")
@@ -48,6 +50,27 @@ func (c *AuthIndexController) Get() {
     c.Data["username"] = username
     c.Data["userid"] = userid
     logs.Debug("IP=>", c.Ctx.Input.IP())
+    
+    o := orm.NewOrm()
+    user := models.User{Id: 1}
+    
+    err := o.Read(&user)
+    
+    if err == orm.ErrNoRows {
+        logs.Debug("查询不到")
+    } else if err == orm.ErrMissPK {
+        logs.Debug("找不到主键")
+    } else {
+        logs.Debug(user.Id, user.Name)
+    }
+    
+    c.Data["user"] = user
+    logs.Debug(user)
+    
+    var users []*models.User
+    num, err := o.QueryTable("go_user").All(&users)
+    fmt.Printf("Returned Rows Num: %s, %s", num, err)
+    c.Data["users"] = users
     
     c.TplName = "authIndex.html"
 }

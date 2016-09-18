@@ -12,6 +12,22 @@
 用户Id：{{.userid}}
 
 <a href="/">首页</a>
+<a href="/user/add">添加用户</a>
+
+<ul>
+    <li>ID: {{.user.Id}}</li>
+    <li>用户名: {{.user.Name}}</li>
+    <li>添加时间: {{.user.Created}}</li>
+</ul>
+
+{{range $k, $v := .users}}
+<ul>
+    <li>ID: {{$v.Id}}</li>
+    <li>用户名: {{$v.Name}}</li>
+    <li>添加时间: {{$v.Created}}</li>
+    <li><a href="/user/edit/{{$v.Id}}">编辑</a></li>
+</ul>
+{{ end }}
 
 </body>
 </html>
