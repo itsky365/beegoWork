@@ -48,7 +48,7 @@ func sessionInit()  {
     //go globalSessions.GC()
     beego.BConfig.WebConfig.Session.SessionProvider = "redis"
     // 链接地址，连接池，访问密码(没有保持为空)
-    beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379,0,Zhuwenzhuo0901"
+    beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379,0"
 }
 
 
