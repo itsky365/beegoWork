@@ -15,9 +15,9 @@ func (c *LoginController) Get() {
 }
 
 func (c *LoginController) Post() {
-    logs.Debug("username=>", c.GetString("username"))
-    username := c.Input().Get("username")
-    pwd := c.Input().Get("pwd")
+    //logs.Debug("username=>", c.GetString("username"))
+    username := c.GetString("username")
+    pwd := c.GetString("pwd")
     logs.Debug(username, pwd)
     
     if username == "golang" && pwd == "123456" {
@@ -47,6 +47,7 @@ func (c *AuthIndexController) Get() {
     
     c.Data["username"] = username
     c.Data["userid"] = userid
+    logs.Debug("IP=>", c.Ctx.Input.IP())
     
     c.TplName = "authIndex.html"
 }

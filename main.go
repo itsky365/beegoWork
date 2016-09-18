@@ -37,7 +37,7 @@ func createTable() {
 func logsConfig() {
     //logs := logs.NewLogger(10000)
     logs.SetLogger("console")
-    logs.SetLogger("file", `{"filename":"debug.log"}`)
+    logs.SetLogger("file", `{"filename":"log/debug.log"}`)
     logs.EnableFuncCallDepth(true)  // 调用的文件名和文件行号
     logs.Async()  // 设置异步输出
 }
