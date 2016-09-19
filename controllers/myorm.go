@@ -112,8 +112,8 @@ func (c *MyOrmController) Get() {
     //o.Insert(post)
 
     post := new(models.Post)
-    qs := o.QueryTable("go_user")
-    qs.Filter("Id", 1).RelatedSel().All(post)
+    qs := o.QueryTable("go_post")
+    qs.Filter("user__id", 1).RelatedSel().One(post)
     fmt.Println(post)
 
     c.Ctx.WriteString("hello")
