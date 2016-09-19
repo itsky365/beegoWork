@@ -110,11 +110,13 @@ func (c *MyOrmController) Get() {
     //post.Title = "我是post2"
     //post.User = user
     //o.Insert(post)
-
-    post := new(models.Post)
+    
+    var post []*models.Post
     qs := o.QueryTable("go_post")
-    qs.Filter("user__id", 1).RelatedSel().One(post)
+    qs.Filter("user__id__in", 1, 2, 3, 4).RelatedSel().All(&post)
     fmt.Println(post)
+    c.Data["posts"] = post
 
-    c.Ctx.WriteString("hello")
+    //c.Ctx.WriteString("hello")
+    c.TplName = "myorm.html"
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{{range $k, $v := .posts}}
+<p>{{$k}}</p>
+<p>标题：{{$v.Title}}</p>
+<p>用户名：{{$v.User.Name}}</p>
+<p>年龄：{{$v.User.Profile.Age}}</p>
+{{end}}
+
+myorm.html
+</body>
+</html>
