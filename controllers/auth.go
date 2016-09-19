@@ -52,26 +52,41 @@ func (c *AuthIndexController) Get() {
     logs.Debug("IP=>", c.Ctx.Input.IP())
     
     o := orm.NewOrm()
-    user := models.User{Id: 1}
-    
-    err := o.Read(&user)
-    
-    if err == orm.ErrNoRows {
-        logs.Debug("查询不到")
-    } else if err == orm.ErrMissPK {
-        logs.Debug("找不到主键")
-    } else {
-        logs.Debug(user.Id, user.Name)
-    }
-    
-    c.Data["user"] = user
-    logs.Debug(user)
-    
-    var users []*models.User
-    num, err := o.QueryTable("go_user").All(&users)
-    fmt.Printf("Returned Rows Num: %s, %s", num, err)
-    c.Data["users"] = users
-    
+    //user := models.User{Id: 1}
+    //
+    //err := o.Read(&user)
+    //
+    //if err == orm.ErrNoRows {
+    //    logs.Debug("查询不到")
+    //} else if err == orm.ErrMissPK {
+    //    logs.Debug("找不到主键")
+    //} else {
+    //    logs.Debug(user.Id, user.Name)
+    //}
+    //
+    //c.Data["user"] = user
+    //logs.Debug(user)
+
+    //var posts []*models.Post
+    //qs := o.QueryTable("go_post")
+    //qs.RelatedSel("go_user")
+    //num1, err1 := qs.Filter("User__Name__contains", "user").All(&posts)
+    //fmt.Printf("Post Rows Num: %s, %s", num1, err1)
+
+    user := &models.User{}
+    o.QueryTable("go_user").Filter("Id", 1).RelatedSel().One(user)
+    // 自动查询到 Profile
+    fmt.Println(user.Profile)
+    // 因为在 Profile 里定义了反向关系的 User，所以 Profile 里的 User 也是自动赋值过的，可以直接取用。
+    fmt.Println(user.Profile.User)
+
+    //var users []*models.User
+    //num, err := o.QueryTable("go_user").All(&users)
+    //fmt.Printf("Returned Rows Num: %s, %s", num, err)
+    //logs.Debug("posts=>", posts)
+    //c.Data["users"] = users
+    //c.Data["posts"] = posts
+
     c.TplName = "authIndex.html"
 }
 

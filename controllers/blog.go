@@ -89,19 +89,19 @@ type BlogJsonController struct {
 }
 
 func (c *BlogJsonController) Get() {
-	o := orm.NewOrm()
+	//o := orm.NewOrm()
 
-	var book1 *models.Book = &models.Book{Name: "蓝色fasfsaf天空", Price: 30.0, Author: "刘凯宁"}
-	//间接构造对象
-	var book2 *models.Book = new(models.Book)
-	book2.Author = "mq"
-	book2.Name = "mq111fasf"
-	book2.Price = 100.0
+	//var book1 *models.Book = &models.Book{Name: "蓝色fasfsaf天空", Price: 30.0, Author: "刘凯宁"}
+	////间接构造对象
+	//var book2 *models.Book = new(models.Book)
+	//book2.Author = "mq"
+	//book2.Name = "mq111fasf"
+	//book2.Price = 100.0
 	//执行插入，o.Insert()返回的是受影响的id
-	id1, _ := o.Insert(book1)
-	id2, _ := o.Insert(book2)
-	logs.Debug(id1)
-	logs.Debug(id2)
+	//id1, _ := o.Insert(book1)
+	//id2, _ := o.Insert(book2)
+	//logs.Debug(id1)
+	//logs.Debug(id2)
 	//logs.Debug("blogjson=>", o.Insert(book1))
 	//logs.Debug("blogjson=>", o.Insert(book2))
 
