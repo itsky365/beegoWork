@@ -16,4 +16,6 @@ func init() {
     beego.Router("/user/add", &controllers.UserAddController{})
     beego.Router("/user/edit/:id:int", &controllers.UserEditController{})
     beego.Router("/myorm", &controllers.MyOrmController{})
+    beego.Router("/myupload/", &controllers.MyuploadController{})
+    beego.Router("/myupload/post", &controllers.MyuploadPostController{})
 }
