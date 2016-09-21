@@ -3,6 +3,7 @@ package models
 import (
 	"github.com/astaxie/beego/orm"
 	"time"
+    //"github.com/lib/pq"
 )
 
 type User struct {
@@ -64,6 +65,14 @@ type Tag struct {
     Posts []*Post `orm:"reverse(many)"`
 }
 
+//type Tag1 *pq.StringArray
+
+type News struct {
+	Id    int `orm:"pk;auto"`
+	Title  string
+    //Likes []int64
+}
+
 //CREATE TABLE public.go_tag
 //(
 //	id integer NOT NULL DEFAULT nextval('go_tag_id_seq'::regclass),
@@ -92,4 +101,5 @@ func init() {
 	orm.RegisterModelWithPrefix("go_", new(Profile))
 	orm.RegisterModelWithPrefix("go_", new(Post))
 	orm.RegisterModelWithPrefix("go_", new(Tag))
+	//orm.RegisterModelWithPrefix("go_", new(News))
 }
