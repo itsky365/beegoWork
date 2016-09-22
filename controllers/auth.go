@@ -6,6 +6,7 @@ import (
     "github.com/astaxie/beego/orm"
     "beegoWork/models"
     "fmt"
+    //"gopkg.in/pg.v4"
 )
 
 // 用户登录
@@ -86,6 +87,34 @@ func (c *AuthIndexController) Get() {
     //logs.Debug("posts=>", posts)
     //c.Data["users"] = users
     //c.Data["posts"] = posts
+
+    //user1 := &models.Users{
+    //    Name:   "user1-beego-auth",
+    //    Emails: []string{"user11@admin", "user12@admin"},
+    //}
+    //err := models.Db.Create(user1)
+    //if err != nil {
+    //    panic(err)
+    //}
+    //fmt.Println(user1)
+
+    src1 := []string{"one@example.com", "two@example.com"}
+    //var dst []string
+    //_, err := db.QueryOne(pg.Scan(pg.Array(&dst)), `SELECT ?`, pg.Array(src))
+    //if err != nil {
+    //    panic(err)
+    //}
+    //fmt.Println(dst)
+
+    zhuxh1 := &models.Zhuxh{
+        Name:   "zhuxh1-beego-auth",
+        Email: src1,
+    }
+    err := models.Db.Create(zhuxh1)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(zhuxh1)
 
     c.TplName = "authIndex.html"
 }

@@ -3,6 +3,8 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/utils/pagination"
+	"fmt"
+    "beegoWork/models"
 )
 
 type MainController struct {
@@ -31,4 +33,14 @@ func (c *MainController) Get() {
 	
 	// fetch the next 20 posts
 	//c.Data["posts"] = ListPostsByOffsetAndLimit(paginator.Offset(), postsPerPage)
+
+	user1 := &models.Users{
+		Name:   "user1-beego-index",
+		Emails: []string{"user11@admin", "user12@admin"},
+	}
+	err := models.Db.Create(user1)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(user1)
 }
