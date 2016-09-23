@@ -9,12 +9,12 @@ import (
     "strings"
 )
 
-func SmsCode() string {
-    var randSlice = make([]string, 0)
+func SmsCode(length int) string {
+    randSlice:= make([]string, 0)
     // 根据时间设置随机数种子
     rand.Seed(int64(time.Now().Nanosecond()))
     // 获取指定范围内的随机数
-    for i := 0; i < 6; i++ {
+    for i := 0; i < length; i++ {
         randNum := rand.Intn(10)
         //fmt.Printf("%v ", randNum)
         randSlice = append(randSlice, strconv.Itoa(randNum))
@@ -39,6 +39,6 @@ func main() {
     //}
     //fmt.Println()
 
-    s := SmsCode()
+    s := SmsCode(6)
     fmt.Println(s)
 }
