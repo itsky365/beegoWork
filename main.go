@@ -8,6 +8,7 @@ import (
 	"github.com/astaxie/beego/logs"
     _ "github.com/astaxie/beego/session/redis"
     "beegoWork/filter"
+    "github.com/coseyo/beeconfig"
 )
 
 //var globalSessions *session.Manager
@@ -53,6 +54,14 @@ func sessionInit()  {
 
 
 func init() {
+    cf, err := beeconfig.Load("database.ini")
+    if err !=nil {
+        logs.Error("beeconfig load err=>", err)
+    }
+    logs.Debug(cf)
+    //logs.Debug(cf["default"]["db_host"])
+    logs.Debug(cf.GetSection("db_host"))
+
     // 注册orm
     ormRegister()
 

@@ -27,14 +27,14 @@ type JsonTypeData struct {
 func httpDo() {
     client := &http.Client{}
 
-    req, err := http.NewRequest("GET", "http://toe.51awifi.com/exceptionlog/show?id=29800281", nil)
+    req, err := http.NewRequest("GET", "http://beta-toe.51awifi.com/exceptionlog/show?id=40918", nil)
     //fmt.Println(&http.Request.RequestURI)
     if err != nil {
         // handle error
     }
 
     req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-    req.Header.Set("Cookie", "JSESSIONID_ADMIN=176EBD787EC962030FF5AC28B6749256")
+    req.Header.Set("Cookie", "JSESSIONID_ADMIN=F31D761BD1B07FED0DC2AA3C3024D07E")
 
     resp, err := client.Do(req)
 
@@ -46,7 +46,7 @@ func httpDo() {
     }
 
     //respBody := string((body))
-    //fmt.Println(string((body)))
+    fmt.Println(string((body)))
     var v1 JsonType
     jsonErr := json.Unmarshal(body, &v1)
     if jsonErr != nil {
