@@ -1,0 +1,3 @@
+我是cc2.txt文件 __Setting__
+我是cc2第2行 __Setting__
+我是cc2第3行 __Setting__
