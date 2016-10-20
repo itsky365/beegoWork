@@ -1,0 +1,3 @@
+我是cc1.txt文件 varName11
+我是第2行 varName11
+我是第3行 varName11

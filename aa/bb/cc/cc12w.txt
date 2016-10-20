@@ -1,0 +1,6 @@
+我是cc1.txt文件 varName11
+我是cc1第2行 varName11
+我是cc1第3行 varName11
+我是cc2.txt文件 settingName22
+我是cc2第2行 settingName22
+我是cc2第3行 settingName22

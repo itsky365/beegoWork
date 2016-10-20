@@ -1,0 +1,3 @@
+我是cc1.txt文件 __Entity__
+我是cc1第2行 __Entity__
+我是cc1第3行 __Entity__
