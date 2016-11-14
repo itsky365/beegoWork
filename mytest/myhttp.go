@@ -34,7 +34,7 @@ func httpDo() {
     }
 
     req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-    req.Header.Set("Cookie", "JSESSIONID_ADMIN=F31D761BD1B07FED0DC2AA3C3024D07E")
+    req.Header.Set("Cookie", "JSESSIONID_ADMIN=D9129FF8B91DFECD2E74CD172E2B3F76")
 
     resp, err := client.Do(req)
 

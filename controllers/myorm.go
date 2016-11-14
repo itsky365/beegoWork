@@ -5,6 +5,7 @@ import (
     "github.com/astaxie/beego/orm"
     "fmt"
     "beegoWork/models"
+    "encoding/json"
 )
 
 type MyOrmController struct {
@@ -116,6 +117,34 @@ func (c *MyOrmController) Get() {
     qs.Filter("user__id__in", 1, 2, 3, 4).RelatedSel().All(&post)
     fmt.Println(post)
     c.Data["posts"] = post
+    
+    // my_news insert
+    var my_user models.MyNews
+    my_user.Title = "我的新闻标题"
+    tags := map[string]string{
+        "aa": "我很好",
+        "bb": "我真的很棒",
+    }
+    tags_json, err := json.Marshal(tags)
+    fmt.Println(tags_json)
+    fmt.Println(string(tags_json))
+    if err != nil {
+        fmt.Println(err)
+    }
+    
+    my_user.Tags = string(tags_json)
+    my_id, err := o.Insert(&my_user)
+    if err != nil {
+        fmt.Println(err)
+    }
+    fmt.Println("my_id=>", my_id)
+    
+    var my_users []*models.MyNews
+    num, err := o.QueryTable("go_my_news").All(&my_users)
+    fmt.Printf("Returned Rows Num: %s, %s", num, err)
+    
+    c.Data["my_users"] = my_users
+    
 
     //c.Ctx.WriteString("hello")
     c.TplName = "myorm.html"

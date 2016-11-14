@@ -115,6 +115,7 @@ func (c *AuthIndexController) Get() {
         panic(err)
     }
     fmt.Println(zhuxh1)
+    c.Data["zhuxh1"] = zhuxh1
 
     c.TplName = "authIndex.html"
 }

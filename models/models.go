@@ -67,10 +67,10 @@ type Tag struct {
 
 //type Tag1 *pq.StringArray
 
-type News struct {
+type MyNews struct {
 	Id    int `orm:"pk;auto"`
 	Title  string
-    //Likes []int64
+    Tags string `orm:"type(jsonb)"`
 }
 
 //CREATE TABLE public.go_tag
@@ -101,5 +101,5 @@ func init() {
 	orm.RegisterModelWithPrefix("go_", new(Profile))
 	orm.RegisterModelWithPrefix("go_", new(Post))
 	orm.RegisterModelWithPrefix("go_", new(Tag))
-	//orm.RegisterModelWithPrefix("go_", new(News))
+	orm.RegisterModelWithPrefix("go_", new(MyNews))
 }

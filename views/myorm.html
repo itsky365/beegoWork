@@ -14,5 +14,14 @@
 {{end}}
 
 myorm.html
+
+<hr>
+
+{{range $k, $v := .my_users}}
+    <p>{{$v.Id}}</p>
+    <p>{{$v.Title}}</p>
+    <p>{{$v.Tags}} <br> {{$v.Tags.aa}} <br> {{$v.Tags.bb}}</p>
+    <hr>
+{{end}}
 </body>
 </html>

@@ -8,9 +8,9 @@ import (
 )
 
 var Endpoint = "oss-cn-shenzhen.aliyuncs.com"
-var AccessKeyId = "***"
-var AccessKeySecret = "***"
-var BucketName = "***"
+var AccessKeyId = "LTAIm4V4AGAK8Il2"
+var AccessKeySecret = "DvaBmxgHKeT5vLI8XrSuo0b6U7tuof"
+var BucketName = "canadago"
 
 type MyuploadController struct {
     beego.Controller

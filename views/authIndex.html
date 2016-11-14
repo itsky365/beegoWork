@@ -31,5 +31,23 @@
 </ul>
 {{ end }}
 
+<div>zhuxhs表</div>
+<p>Id: {{.zhuxh1.Id}}</p>
+<p>Name: {{.zhuxh1.Name}}</p>
+<div>Email: {{.zhuxh1.Email}} <br>
+    {{range $k, $v := .zhuxh1.Email}}
+
+    {{if eq $k 0}}
+    <div>#0 {{$k}} / {{$v}}</div>
+    {{end}}
+
+    {{if eq $k 1}}
+    <div>#1 {{$k}} / {{$v}}</div>
+    {{end}}
+
+    {{end}}
+</div>
+
+
 </body>
 </html>
