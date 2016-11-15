@@ -2,13 +2,13 @@ package main
 
 import (
 	"github.com/BurntSushi/graphics-go/graphics"
-    "github.com/BurntSushi/graphics-go/graphics/graphicstest"
+	"github.com/BurntSushi/graphics-go/graphics/graphicstest"
 	"image"
 
+	"fmt"
 	"image/png"
-    "fmt"
-    "time"
-    "os"
+	"os"
+	"time"
 )
 
 func main() {
@@ -22,14 +22,14 @@ func main() {
 		fmt.Println(err)
 	}
 
-    file1Name := time.Now().Unix()
-    file1, err := os.Create(fmt.Sprintf("test%d.png", file1Name))
+	file1Name := time.Now().Unix()
+	file1, err := os.Create(fmt.Sprintf("test%d.png", file1Name))
 	if err != nil {
 		fmt.Println(err)
 	}
 	defer file1.Close()
 
-    png.Encode(file1, dst)
+	png.Encode(file1, dst)
 
 	// cmp, err := graphicstest.LoadImage("./testdata/gopher-thumb-80x80.png")
 	// if err != nil {

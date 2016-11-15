@@ -1,13 +1,13 @@
 package main
 
 import (
-    "github.com/mholt/archiver"
-    "fmt"
+	"fmt"
+	"github.com/mholt/archiver"
 )
 
 func main() {
-    err := archiver.Zip.Open("upload/componentZip.zip", "upload")
-    if err != nil {
-        fmt.Println(err)
-    }
+	err := archiver.Zip.Open("upload/componentZip.zip", "upload")
+	if err != nil {
+		fmt.Println(err)
+	}
 }

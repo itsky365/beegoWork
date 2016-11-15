@@ -12,11 +12,11 @@ import (
 )
 
 const (
-	dx       = 100         // 图片的大小 宽度
-	dy       = 40          // 图片的大小 高度
+	dx       = 100                     // 图片的大小 宽度
+	dy       = 40                      // 图片的大小 高度
 	fontFile = "./testdata/luxisr.ttf" // 需要使用的字体文件
-	fontSize = 20          // 字体尺寸
-	fontDPI  = 72          // 屏幕每英寸的分辨率
+	fontSize = 20                      // 字体尺寸
+	fontDPI  = 72                      // 屏幕每英寸的分辨率
 )
 
 func main() {

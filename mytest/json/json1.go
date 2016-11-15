@@ -57,20 +57,20 @@ func main() {
 	}
 	fmt.Println(dat)
 	fmt.Println(dat["strs"])
-    //for k, v := range dat["strs"] {
-    //    fmt.Println(k, v)
-    //}
+	//for k, v := range dat["strs"] {
+	//    fmt.Println(k, v)
+	//}
 
-    num := dat["num"].(float64)
-    fmt.Println(num)
-    // 访问嵌套的数据需要一些类型转换
-    strs := dat["strs"].([]interface{})
-    str1 := strs[0].(string)
-    fmt.Println(str1)
+	num := dat["num"].(float64)
+	fmt.Println(num)
+	// 访问嵌套的数据需要一些类型转换
+	strs := dat["strs"].([]interface{})
+	str1 := strs[0].(string)
+	fmt.Println(str1)
 
-    str := `{"page": 1, "fruits": ["apple", "peach"]}`
-    res := &Response2{}
-    json.Unmarshal([]byte(str), &res)
-    fmt.Println(res)
-    fmt.Println(res.Fruits[0])
+	str := `{"page": 1, "fruits": ["apple", "peach"]}`
+	res := &Response2{}
+	json.Unmarshal([]byte(str), &res)
+	fmt.Println(res)
+	fmt.Println(res.Fruits[0])
 }

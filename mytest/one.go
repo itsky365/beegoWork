@@ -7,7 +7,7 @@ func main() {
 	var b *int = &a
 	var c **int = &b
 	var x int = *b
-	fmt.Println("a = ", a) // 1
+	fmt.Println("a = ", a)   // 1
 	fmt.Println("&a = ", &a) // xx
 	fmt.Println("*&a = ", *&a)
 	fmt.Println("b = ", b)

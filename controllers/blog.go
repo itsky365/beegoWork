@@ -2,11 +2,11 @@ package controllers
 
 import (
 	"beegoWork/models"
+	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"time"
-	"fmt"
 )
 
 type BlogIndexController struct {
@@ -72,8 +72,8 @@ func (c *BlogIndexController) Get() {
 
 	c.Data["AA"] = &A{Name: "astaxie", Age: 25}
 
-	ss :=[]string{"a","b","c"}
-	c.Data["s"]=ss
+	ss := []string{"a", "b", "c"}
+	c.Data["s"] = ss
 
 	c.Data["Id"] = id
 	c.Data["Website"] = "beego.me"
@@ -112,18 +112,17 @@ func (c *BlogJsonController) Get() {
 	c.ServeJSON()
 }
 
-
 type BlogAddController struct {
 	beego.Controller
 }
 
 func (c *BlogAddController) Get() {
 	o := orm.NewOrm()
-	
+
 	user := models.User{Id: 9}
-	
+
 	err := o.Read(&user)
-	
+
 	if err == orm.ErrNoRows {
 		fmt.Println("查询不到")
 	} else if err == orm.ErrMissPK {
@@ -131,13 +130,11 @@ func (c *BlogAddController) Get() {
 	} else {
 		fmt.Println(user.Id, user.Name)
 	}
-	
-	
+
 	c.Data["aa"] = "aaa"
-	
-	
+
 	//c.Data["User"] = o.Read(&user)
-	
+
 	//c.Layout = "layout.html"
 	c.TplName = "blogAdd.html"
 }
