@@ -7,8 +7,6 @@ import (
 	"os"
     "github.com/BurntSushi/graphics-go/graphics"
     "time"
-    //"image/png"
-    //"image/gif"
     "path"
     "image/png"
     "image/gif"
@@ -47,7 +45,9 @@ func saveImage(path string, img image.Image, fileExt string) (err error) {
     } else if fileExt == ".png" {
         err = png.Encode(imgfile, img)
     } else if fileExt == ".gif" {
-        err = gif.Encode(imgfile, img, &gif.Options{NumColors: 256})
+        err = gif.Encode(imgfile, img, &gif.Options{
+            NumColors: 256,
+        })
     }
     if err != nil {
         fmt.Println(err)
